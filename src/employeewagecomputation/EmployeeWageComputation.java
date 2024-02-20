@@ -9,57 +9,66 @@ public class EmployeeWageComputation {
 		int attendance;
 		int employeeType;
 		int monthlyWage = 0;
+		int workingHours = 0;
+		int workingDay = 1;
 		final int WAGE_PER_HR = 20;
 		final int PART_TIME_HR = 4;
 		final int FULL_TIME_HR = 8;
 		final int DAY_PER_MONTH = 20;
-		int hours = 0;
-		int fullTimePresentDay = 0;
-		int partTimePresentDay = 0;
+		final int HR_PER_MONTH = 100;
 		
 		System.out.println("Welcome to Employee wage computation");
-		for(int i=0; i < DAY_PER_MONTH; i++) {
-			Random random=new Random();
+		
+		while(workingHours <= HR_PER_MONTH && workingDay <= DAY_PER_MONTH) {
+			Random random= new Random();
 			attendance = random.nextInt(10) % 2 ;
 			
+			System.out.println("Day : "+workingDay);
 			switch(attendance) {
+				
 			case 0:
-				System.out.println("Employee is absent");
+				
+				System.out.println("Employee was absent");
+			
 			break;
 			
 			case 1:
-				System.out.println("Employee is present");
+			
+			
+				
+				System.out.println("Employee was present");
 				
 				employeeType = random.nextInt(10) % 2;
+				
 				switch(employeeType) {
 				case 0:
-					System.out.println("Employee is part timer");
-					hours += PART_TIME_HR;
-					partTimePresentDay++;
+					
+					System.out.println("Employee worked part time");
+				
+					workingHours += PART_TIME_HR;
+					
 				break;
 				
 				case 1:
-					System.out.println("Employee is full timer");
-					hours += FULL_TIME_HR;
-					fullTimePresentDay++;
+				
+					System.out.println("Employee worked full time");
 					
-				break;
-				default:
-					System.out.println("Not a Employee");
+					workingHours += FULL_TIME_HR;
+					
+					break;
 				}
 				
 			break;
-			default:
-				System.out.println("Invalid Number");
 			
 			}
-			System.out.println();
+			System.out.println("---------------------------");
+			++workingDay;
+			
 		}
 		
-		monthlyWage = hours * WAGE_PER_HR;
-		System.out.println("Full time Days in month "+ fullTimePresentDay);
-		System.out.println("Part time Days in month "+ partTimePresentDay);
-		System.out.println("Employee Wage = "+monthlyWage);
+		monthlyWage = workingHours * WAGE_PER_HR;
+	
+		System.out.println("Employee full month Wage = "+ monthlyWage);
 	}
 
 }
