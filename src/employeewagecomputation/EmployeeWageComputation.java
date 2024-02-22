@@ -8,16 +8,16 @@ public class EmployeeWageComputation {
 	int monthlyWage = 0;
 	int workingHours = 0;
 	int workingDay = 1;
-	final int WAGE_PER_HR = 20;
+	int wagePerHr;
 	final int PART_TIME_HR = 4;
 	final int FULL_TIME_HR = 8;
-	final int DAY_PER_MONTH = 20;
-	final int HR_PER_MONTH = 100;
+	int dayPerMonth;
+	int hrPerMonth;
 	
 	public void employeeWageCalc() {
 		System.out.println("Welcome to Employee wage computation");
 		
-		while(workingHours <= HR_PER_MONTH && workingDay <= DAY_PER_MONTH) {
+		while(workingHours <= hrPerMonth && workingDay <= dayPerMonth) {
 			Random random= new Random();
 			attendance = random.nextInt(10) % 2 ;
 			
@@ -64,14 +64,29 @@ public class EmployeeWageComputation {
 			
 		}
 		
-		monthlyWage = workingHours * WAGE_PER_HR;
+		monthlyWage = workingHours * wagePerHr;
 	
 		System.out.println("Employee full month Wage = "+ monthlyWage);
 	}
 
 
+	public EmployeeWageComputation(int wagePerHr, int dayPerMonth, int hrPerMonth) {
+		this.wagePerHr = wagePerHr;
+		this.dayPerMonth = dayPerMonth;
+		this.hrPerMonth = hrPerMonth;
+	}
+
+
 	public static void main(String[] args) {
-		EmployeeWageComputation employeeWageComputation = new EmployeeWageComputation();
-		employeeWageComputation.employeeWageCalc();
+		
+		EmployeeWageComputation company1 = new EmployeeWageComputation(25, 22, 120);
+		company1.employeeWageCalc();
+		
+		EmployeeWageComputation company2 = new EmployeeWageComputation(22, 20, 95);
+		company2.employeeWageCalc();
+		
+		EmployeeWageComputation company3 = new EmployeeWageComputation(19, 19, 100);
+		company3.employeeWageCalc();
+	
 	}
 }
